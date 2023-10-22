@@ -27,7 +27,7 @@ function getAlpha(element, rectHeightOffset, offset) {
   return a
 }
 
-function onScroll() {
+function scrolled() {
   const alpha = getAlpha(header, 50)
   const color = lerpColor(alpha)
   header.style.backgroundColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`
@@ -44,8 +44,10 @@ function onScroll() {
   }
 }
 
-window.addEventListener("scroll", onScroll)
-window.addEventListener("resize", onScroll)
+scrolled()
+
+window.addEventListener("scroll", scrolled)
+window.addEventListener("resize", scrolled)
 
 const navButtons = Array.from(document.querySelectorAll('nav button'))
 for (const key in navButtons) {
