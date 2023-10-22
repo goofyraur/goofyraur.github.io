@@ -44,8 +44,7 @@ function scrolled() {
   }
 }
 
-scrolled()
-
+window.addEventListener("load", scrolled)
 window.addEventListener("scroll", scrolled)
 window.addEventListener("resize", scrolled)
 
