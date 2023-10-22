@@ -12,39 +12,55 @@ function lerpColor(alpha) {
   return [r, g, b, a]
 }
 
-function getAlpha() {
-  const rect = header.getBoundingClientRect()
-  const dist = rect.top * -1 + 50
+function getAlpha(element, rectHeightOffset, offset) {
+  const rect = element.getBoundingClientRect()
+  const dist = rect.top * -1 + 50 + (offset || 0)
   let a = 0
   if (dist < 0) {
     a = 0
-  } else if (dist > rect.height - 50) {
+  } else if (dist > rect.height - (rectHeightOffset || 0)) {
     a = 1
   } else {
-    a = dist / (rect.height - 50)
+    a = dist / (rect.height - (rectHeightOffset || 0))
   }
 
   return a
 }
 
-function fixColor() {
-  const alpha = getAlpha()
+function onScroll() {
+  const alpha = getAlpha(header, 50)
   const color = lerpColor(alpha)
   header.style.backgroundColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`
   header.style.backdropFilter = `blur(${(15 - 2) * alpha + 2}px)`
+
+  const tableItems = Array.from(document.querySelectorAll('.element table tr'))
+  for (const key in tableItems) {
+    tableItems[key].style.opacity = getAlpha(tableItems[key], 0, window.innerHeight - 100)
+  }
+
+  const hrItems = Array.from(document.querySelectorAll('.element-divider hr'))
+  for (const key in hrItems) {
+    hrItems[key].style.width = (1 - hrItems[key].getBoundingClientRect().top / (window.innerHeight - 50)) * (window.innerWidth - 60) + 50 + "px"
+  }
 }
 
-window.addEventListener("scroll", fixColor)
-window.addEventListener("resize", fixColor)
+window.addEventListener("scroll", onScroll)
+window.addEventListener("resize", onScroll)
 
 const navButtons = Array.from(document.querySelectorAll('nav button'))
 for (const key in navButtons) {
-	navButtons[key].addEventListener('click', () => {
-  	const heading = document.getElementById('heading-' + navButtons[key].innerText.replaceAll(' ', '').toLowerCase())
+  navButtons[key].addEventListener('click', () => {
+    const heading = document.getElementById('heading-' + navButtons[key].innerText.replaceAll(' ', '').toLowerCase())
     if (heading) {
-    	window.scrollTo({top: heading.getBoundingClientRect().top + window.scrollY - 50, behavior: 'smooth'})
+      window.scrollTo({
+        top: heading.getBoundingClientRect().top + window.scrollY - 50,
+        behavior: 'smooth'
+      })
     } else {
-    	window.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     }
   })
 }
