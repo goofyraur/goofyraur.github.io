@@ -51,7 +51,6 @@ nav button {
   transition: background-color 500ms, border-radius 250ms;
   cursor: pointer;
   color: #fff;
-  margin-left: 5px;
 }
 
 nav button:hover {
@@ -62,6 +61,19 @@ nav button:hover {
 nav button:active {
   background-color: #454545;
   border-radius: 15px;
+}
+
+#nav-title {
+  max-width: 50%;
+}
+
+#nav-buttons {
+  overflow: hidden;
+  max-width: 50%;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
 }
 
 #header {
@@ -118,6 +130,8 @@ h3 span {
 
 .element-divider hr {
   border: 1px solid #334433;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .element table {
