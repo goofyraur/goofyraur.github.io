@@ -40,7 +40,7 @@ function scrolled() {
 
   const hrItems = Array.from(document.querySelectorAll('.element-divider hr'))
   for (const key in hrItems) {
-    hrItems[key].style.width = (1 - hrItems[key].getBoundingClientRect().top / (window.innerHeight - 50)) * (window.innerWidth - 60) + 50 + "px"
+    hrItems[key].style.width = (1 - hrItems[key].getBoundingClientRect().top + 50 / (window.innerHeight - 50)) * (window.innerWidth - 60) + 50 + "px"
   }
 }
 
