@@ -76,6 +76,24 @@ nav button:active {
   gap: 5px;
 }
 
+#to-repository {
+  border-radius: 50px;
+  box-shadow: 0 0 8px #111;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background-color: #282828;
+  fill: #fff;
+  height: 32px;
+  width: 32px;
+  padding: 5px;
+  transition: background-color 500ms;
+}
+
+#to-repository:hover {
+  background-color: #303030;
+}
+
 #header {
   display: flex;
   align-items: center;
