@@ -51,6 +51,7 @@ nav button {
   transition: background-color 500ms, border-radius 250ms;
   cursor: pointer;
   color: #fff;
+  flex-shrink: 0;
 }
 
 nav button:hover {
@@ -64,12 +65,13 @@ nav button:active {
 }
 
 #nav-title {
-  max-width: 50%;
+  max-width: max-content;
+  white-space: nowrap;
+  padding-right: 24px;
 }
 
 #nav-buttons {
   overflow: hidden;
-  max-width: 50%;
   height: 30px;
   display: flex;
   justify-content: flex-end;
@@ -84,10 +86,17 @@ nav button:active {
   right: 15px;
   background-color: #282828;
   fill: #fff;
-  height: 32px;
-  width: 32px;
-  padding: 5px;
+  height: 42px;
+  width: 42px;
+  padding: 10px;
   transition: background-color 500ms;
+  z-index: 9999;
+}
+
+@media (max-width: 750px) {
+  #to-repository {
+    display: none;
+  }
 }
 
 #to-repository:hover {
